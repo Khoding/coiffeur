@@ -1,4 +1,3 @@
-import 'package:coiffeur/widgets/filters_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -7,6 +6,7 @@ class MainDrawer extends StatelessWidget {
       leading: Icon(
         icon,
         size: 26,
+        color: Colors.deepPurpleAccent,
       ),
       title: Text(
         title,
@@ -14,6 +14,7 @@ class MainDrawer extends StatelessWidget {
           fontFamily: 'RobotoCondensed',
           fontSize: 24,
           fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
       ),
       onTap: tapHandler,
@@ -28,26 +29,23 @@ class MainDrawer extends StatelessWidget {
           Container(
             height: 120,
             width: double.infinity,
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
             alignment: Alignment.centerLeft,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).primaryColor,
             child: Text(
-              'Cooking Up !',
+              'Coiffeur',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 30,
-                color: Theme.of(context).primaryColor,
+                color: Colors.white,
               ),
             ),
           ),
           SizedBox(
             height: 20,
           ),
-          buildListTile('Variantes', Icons.restaurant, () {
+          buildListTile('Variantes', Icons.apps, () {
             Navigator.of(context).pushReplacementNamed('/');
-          }),
-          buildListTile('Filters', Icons.settings, () {
-            Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
           }),
         ],
       ),
