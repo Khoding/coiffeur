@@ -14,7 +14,6 @@ class MainDrawer extends StatelessWidget {
           fontFamily: 'RobotoCondensed',
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
         ),
       ),
       onTap: tapHandler,
