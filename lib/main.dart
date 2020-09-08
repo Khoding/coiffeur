@@ -1,5 +1,9 @@
 import 'package:coiffeur/dummy_data.dart';
+import 'package:coiffeur/models/score.dart';
 import 'package:coiffeur/widgets/main_drawer.dart';
+import 'package:coiffeur/widgets/new_score.dart';
+import 'package:coiffeur/widgets/score_item.dart';
+import 'package:coiffeur/widgets/score_list.dart';
 import 'package:coiffeur/widgets/variante_item.dart';
 import 'package:flutter/material.dart';
 
@@ -46,27 +50,68 @@ Widget buildContainer({Widget child}) {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Widget> _buildPortraitContent(
-      MediaQueryData mediaQuery, AppBar appBar, Widget textListWidget) {
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
+  final List<Score> _teamScores = [
+    Score(
+      id: 's1',
+      points: 1,
+    ),
+    Score(
+      id: 's2',
+      points: 2,
+    ),
+  ];
+
+  void _addNewScore(String newId, int newPoints) {
+    final newScore = Score(id: newId, points: newPoints);
+    setState(() {
+      _teamScores.add(newScore);
+    });
+  }
+
+  void _startAddNewScore(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return NewScore(_addNewScore);
+        });
+  }
+
+  List<Widget> _buildPortraitContent(MediaQueryData mediaQuery, AppBar appBar,
+      Widget textListWidget, Widget gridWidget) {
     return [
-      Container(
-        height: (mediaQuery.size.height -
-                appBar.preferredSize.height -
-                mediaQuery.padding.top) *
-            0.3,
+      // Container(
+      //   height: (mediaQuery.size.height -
+      //           appBar.preferredSize.height -
+      //           mediaQuery.padding.top) *
+      //       0.3,
+      // ), if you uncomment that change the * 1 to * 0.7 in the textListWidget
+      Stack(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: textListWidget,
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: gridWidget,
+          ),
+        ],
       ),
-      textListWidget
     ];
   }
 
-  List<Widget> _buildLandscapeContent(
-      MediaQueryData mediaQuery, AppBar appBar, Widget textListWidget) {
+  List<Widget> _buildLandscapeContent(MediaQueryData mediaQuery, AppBar appBar,
+      Widget textListWidget, Widget gridWidget) {
     return [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[],
-      ),
-      textListWidget
+      // Row(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: <Widget>[],
+      // ),
+      textListWidget,
+      gridWidget
     ];
   }
 
@@ -76,11 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
-      title: const Text('Personal Expenses'),
+      title: Text('Coiffeur'),
       actions: <Widget>[
-        //   IconButton(
-        //       icon: const Icon(Icons.add),
-        //       onPressed: () => _startAddNewTransaction(context)),
+        IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => _startAddNewScore(context)),
       ],
     );
 
@@ -88,7 +133,8 @@ class _MyHomePageState extends State<MyHomePage> {
       height: (MediaQuery.of(context).size.height -
               appBar.preferredSize.height -
               MediaQuery.of(context).padding.top) *
-          0.7,
+          1,
+      width: (MediaQuery.of(context).size.width) * 0.4,
       child: buildContainer(
         child: ListView(
           children: DUMMY_VARIANTES
@@ -103,17 +149,29 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+
+    final gridWidget = Container(
+      height: (MediaQuery.of(context).size.height -
+              appBar.preferredSize.height -
+              MediaQuery.of(context).padding.top) *
+          1,
+      width: (MediaQuery.of(context).size.width -
+              (MediaQuery.of(context).size.width * 0.4)) *
+          1,
+      child: buildContainer(child: ScoreList(_teamScores)),
+    );
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Coiffeur'),
-      ),
+      appBar: appBar,
       drawer: MainDrawer(),
       body: Column(
         children: <Widget>[
           if (isLandscape)
-            ..._buildLandscapeContent(mediaQuery, appBar, textListWidget),
+            ..._buildLandscapeContent(
+                mediaQuery, appBar, textListWidget, gridWidget),
           if (!isLandscape)
-            ..._buildPortraitContent(mediaQuery, appBar, textListWidget),
+            ..._buildPortraitContent(
+                mediaQuery, appBar, textListWidget, gridWidget),
         ],
       ),
     );

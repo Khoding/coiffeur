@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatefulWidget {
+class NewScore extends StatefulWidget {
   final Function addNewTransaction;
 
-  NewTransaction(this.addNewTransaction) {
+  NewScore(this.addNewTransaction) {
     print('Constructor NewTransaction Widget');
   }
 
   @override
-  _NewTransactionState createState() {
+  _NewScoreState createState() {
     print('createState NewTransaction Widget');
-    return _NewTransactionState();
+    return _NewScoreState();
   }
 }
 
-class _NewTransactionState extends State<NewTransaction> {
-  _NewTransactionState() {
+class _NewScoreState extends State<NewScore> {
+  _NewScoreState() {
     print('Constructor NewTransaction State');
   }
 
@@ -44,7 +44,7 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   @override
-  void didUpdateWidget(NewTransaction oldWidget) {
+  void didUpdateWidget(NewScore oldWidget) {
     print('didUpdateWidget()');
     super.didUpdateWidget(oldWidget);
   }
