@@ -21,14 +21,10 @@ class VarianteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => selectVariante(context),
-      splashColor: Theme.of(context).primaryColor,
-      child: Container(
-        padding: const EdgeInsets.all(15),
-        child: Text(
-          title,
-        ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(15),
+      child: Text(
+        title,
       ),
     );
   }

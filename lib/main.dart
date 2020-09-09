@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Atouts',
@@ -171,6 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
       width: (MediaQuery.of(context).size.width) * 0.4,
       child: buildContainer(
         child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
           children: DUMMY_VARIANTES
               .map(
                 (catData) => VarianteItem(
