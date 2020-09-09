@@ -73,45 +73,84 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startAddNewScore(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return NewScore(_addNewScore);
-        });
+      context: context,
+      builder: (_) {
+        return NewScore(_addNewScore);
+      },
+    );
   }
 
-  List<Widget> _buildPortraitContent(MediaQueryData mediaQuery, AppBar appBar,
-      Widget textListWidget, Widget gridWidget) {
+  List<Widget> _buildPortraitContent(
+      MediaQueryData mediaQuery, AppBar appBar, Widget textListWidget) {
     return [
-      // Container(
-      //   height: (mediaQuery.size.height -
-      //           appBar.preferredSize.height -
-      //           mediaQuery.padding.top) *
-      //       0.3,
-      // ), if you uncomment that change the * 1 to * 0.7 in the textListWidget
-      Stack(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: textListWidget,
+      SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'Atouts',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  Text(
+                    'Equipe 1',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  Text(
+                    'Equipe 2',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            textListWidget,
+                            Text(
+                              'Hoi',
+                            ),
+                            Text(
+                              'Hoi',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                height: appBar.preferredSize.height,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Score',
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: gridWidget,
-          ),
-        ],
+        ),
       ),
     ];
   }
 
-  List<Widget> _buildLandscapeContent(MediaQueryData mediaQuery, AppBar appBar,
-      Widget textListWidget, Widget gridWidget) {
+  List<Widget> _buildLandscapeContent(
+      MediaQueryData mediaQuery, AppBar appBar, Widget textListWidget) {
     return [
-      // Row(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: <Widget>[],
-      // ),
       textListWidget,
-      gridWidget
     ];
   }
 
@@ -122,16 +161,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final appBar = AppBar(
       title: Text('Coiffeur'),
-      actions: <Widget>[
-        IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => _startAddNewScore(context)),
-      ],
     );
 
     final textListWidget = Container(
       height: (MediaQuery.of(context).size.height -
-              appBar.preferredSize.height -
+              (appBar.preferredSize.height * 3) -
               MediaQuery.of(context).padding.top) *
           1,
       width: (MediaQuery.of(context).size.width) * 0.4,
@@ -150,28 +184,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    final gridWidget = Container(
-      height: (MediaQuery.of(context).size.height -
-              appBar.preferredSize.height -
-              MediaQuery.of(context).padding.top) *
-          1,
-      width: (MediaQuery.of(context).size.width -
-              (MediaQuery.of(context).size.width * 0.4)) *
-          1,
-      child: buildContainer(child: ScoreList(_teamScores)),
-    );
-
     return Scaffold(
       appBar: appBar,
       drawer: MainDrawer(),
       body: Column(
         children: <Widget>[
           if (isLandscape)
-            ..._buildLandscapeContent(
-                mediaQuery, appBar, textListWidget, gridWidget),
+            ..._buildLandscapeContent(mediaQuery, appBar, textListWidget),
           if (!isLandscape)
-            ..._buildPortraitContent(
-                mediaQuery, appBar, textListWidget, gridWidget),
+            ..._buildPortraitContent(mediaQuery, appBar, textListWidget),
         ],
       ),
     );
