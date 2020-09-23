@@ -5,6 +5,7 @@ import 'package:coiffeur/widgets/new_score.dart';
 import 'package:coiffeur/widgets/score_item.dart';
 import 'package:coiffeur/widgets/score_list.dart';
 import 'package:coiffeur/widgets/variante_item.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -80,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  List<Widget> _buildPortraitContent(
-      MediaQueryData mediaQuery, AppBar appBar, Widget textListWidget) {
+  List<Widget> _buildPortraitContent(MediaQueryData mediaQuery, AppBar appBar,
+      Widget textListWidget, Widget dataWidget) {
     return [
       SingleChildScrollView(
         child: Padding(
@@ -114,15 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       children: [
                         Row(
-                          children: [
-                            textListWidget,
-                            Text(
-                              'Hoi',
-                            ),
-                            Text(
-                              'Hoi',
-                            ),
-                          ],
+                          children: [textListWidget, dataWidget],
                         ),
                       ],
                     ),
@@ -147,8 +140,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
-  List<Widget> _buildLandscapeContent(
-      MediaQueryData mediaQuery, AppBar appBar, Widget textListWidget) {
+  List<Widget> _buildLandscapeContent(MediaQueryData mediaQuery, AppBar appBar,
+      Widget textListWidget, Widget dataWidget) {
     return [
       textListWidget,
     ];
@@ -185,15 +178,50 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
+    final dataWidget = Container(
+      height: (MediaQuery.of(context).size.height -
+              (appBar.preferredSize.height * 3) -
+              MediaQuery.of(context).padding.top) *
+          1,
+      width: (MediaQuery.of(context).size.width) * 0.5,
+      child: buildContainer(
+        child: GridView.count(
+          // Create a grid with 2 columns. If you change the scrollDirection to
+          // horizontal, this produces 2 rows.
+          crossAxisCount: 2,
+          // physics: const NeverScrollableScrollPhysics(),
+
+          // Generate 100 widgets that display their index in the List.
+          children: List.generate(
+            20,
+            (text) {
+              return Center(
+                child: GestureDetector(
+                  onTap: () {
+                    _startAddNewScore(context);
+                  },
+                  child: Text(
+                    _teamScores.toString(),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: appBar,
       drawer: MainDrawer(),
       body: Column(
         children: <Widget>[
           if (isLandscape)
-            ..._buildLandscapeContent(mediaQuery, appBar, textListWidget),
+            ..._buildLandscapeContent(
+                mediaQuery, appBar, textListWidget, dataWidget),
           if (!isLandscape)
-            ..._buildPortraitContent(mediaQuery, appBar, textListWidget),
+            ..._buildPortraitContent(
+                mediaQuery, appBar, textListWidget, dataWidget),
         ],
       ),
     );

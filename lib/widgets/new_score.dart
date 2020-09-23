@@ -19,7 +19,6 @@ class _NewScoreState extends State<NewScore> {
     print('Constructor NewTransaction State');
   }
 
-  final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 
   void submitData() {
@@ -27,14 +26,12 @@ class _NewScoreState extends State<NewScore> {
       return;
     }
 
-    final enteredTitle = _titleController.text;
-    final enteredAmount = double.parse(_amountController.text);
+    final enteredAmount = int.parse(_amountController.text);
 
     widget.addNewTransaction(
-      enteredTitle,
       enteredAmount,
     );
-    Navigator.of(context).pop();
+    Navigator.of(context).pop(enteredAmount);
   }
 
   @override
@@ -71,14 +68,7 @@ class _NewScoreState extends State<NewScore> {
             children: <Widget>[
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Titre',
-                ),
-                controller: _titleController,
-                onSubmitted: (_) => submitData(),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Montant',
+                  labelText: 'Score',
                 ),
                 controller: _amountController,
                 keyboardType: TextInputType.number,
