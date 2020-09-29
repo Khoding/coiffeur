@@ -13,10 +13,12 @@ class ScoreList extends StatelessWidget {
     print('build() TransactionList');
     return ListView(
       children: scores
-          .map((tx) => ScoreItem(
-                key: ValueKey(tx.id),
-                scores: tx.points,
-              ))
+          .map(
+            (tx) => ScoreItem(
+              tx.id,
+              tx.points,
+            ),
+          )
           .toList(),
     );
   }

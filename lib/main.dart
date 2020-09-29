@@ -58,15 +58,21 @@ class _MyHomePageState extends State<MyHomePage> {
     Score(
       id: 's1',
       points: 1,
+      facteurTemporel: 1,
     ),
     Score(
       id: 's2',
       points: 2,
+      facteurTemporel: 2,
     ),
   ];
 
-  void _addNewScore(String newId, int newPoints) {
-    final newScore = Score(id: newId, points: newPoints);
+  void _addNewScore(String newId, int newPoints, int newFacteurTemporel) {
+    final newScore = Score(
+      id: newId,
+      points: newPoints,
+      facteurTemporel: newFacteurTemporel,
+    );
     setState(() {
       _teamScores.add(newScore);
     });
@@ -115,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       children: [
                         Row(
-                          children: [textListWidget, dataWidget],
+                          children: [textListWidget, dataWidget, dataWidget],
                         ),
                       ],
                     ),
@@ -183,30 +189,16 @@ class _MyHomePageState extends State<MyHomePage> {
               (appBar.preferredSize.height * 3) -
               MediaQuery.of(context).padding.top) *
           1,
-      width: (MediaQuery.of(context).size.width) * 0.5,
+      width: (MediaQuery.of(context).size.width) * 0.275,
       child: buildContainer(
-        child: GridView.count(
-          // Create a grid with 2 columns. If you change the scrollDirection to
-          // horizontal, this produces 2 rows.
-          crossAxisCount: 2,
-          // physics: const NeverScrollableScrollPhysics(),
-
-          // Generate 100 widgets that display their index in the List.
-          children: List.generate(
-            20,
-            (text) {
-              return Center(
-                child: GestureDetector(
-                  onTap: () {
-                    _startAddNewScore(context);
-                  },
-                  child: Text(
-                    _teamScores.toString(),
-                  ),
-                ),
-              );
-            },
-          ),
+        child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
+          children: DUMMY_SCORES
+              .map(
+                (catData) => ScoreItem(
+                    catData.id, catData.points * catData.facteurTemporel),
+              )
+              .toList(),
         ),
       ),
     );

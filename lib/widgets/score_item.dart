@@ -1,45 +1,38 @@
+import 'package:coiffeur/dummy_data.dart';
 import 'package:coiffeur/screens/variantes_screen.dart';
 import 'package:flutter/material.dart';
 
-class ScoreItem extends StatefulWidget {
-  const ScoreItem({
-    Key key,
-    @required this.scores,
-  }) : super(key: key);
-
+class ScoreItem extends StatelessWidget {
+  final String id;
   final int scores;
 
-  @override
-  _ScoreItemState createState() => _ScoreItemState();
-}
+  ScoreItem(this.id, this.scores);
 
-class _ScoreItemState extends State<ScoreItem> {
+  void selectScore(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      VarianteScreen.routeName,
+      arguments: {
+        'id': id,
+        'scores': scores,
+      },
+    );
+  }
+
   void selectVariante(BuildContext context) {
     Navigator.of(context).pushNamed(
       VarianteScreen.routeName,
       arguments: {
-        'points': widget.scores,
+        'points': scores,
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => selectVariante(context),
-      splashColor: Theme.of(context).primaryColor,
-      child: DataTable(
-        columns: [
-          DataColumn(label: Text('Team 1')),
-          DataColumn(label: Text('Team 2'))
-        ],
-        rows: [
-          DataRow(
-            cells: [
-              DataCell(ScoreItem(scores: widget.scores)),
-            ],
-          ),
-        ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(15),
+      child: Text(
+        scores.toString(),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'models/variante.dart';
 import 'models/score.dart';
 
@@ -57,42 +59,52 @@ const DUMMY_VARIANTES = const [
 const DUMMY_SCORES = const [
   Score(
     id: 's1',
-    points: 1,
+    points: 23,
+    facteurTemporel: 1,
   ),
   Score(
     id: 's2',
-    points: 2,
+    points: 4,
+    facteurTemporel: 2,
   ),
   Score(
     id: 's3',
-    points: 3,
+    points: 52,
+    facteurTemporel: 3,
   ),
   Score(
     id: 's4',
-    points: 4,
+    points: 32,
+    facteurTemporel: 4,
   ),
   Score(
     id: 's5',
-    points: 5,
+    points: 58,
+    facteurTemporel: 5,
   ),
   Score(
     id: 's6',
-    points: 6,
+    points: 86,
+    facteurTemporel: 6,
   ),
   Score(
     id: 's7',
-    points: 7,
+    points: 102,
+    facteurTemporel: 7,
   ),
   Score(
     id: 's8',
-    points: 8,
+    points: 23,
+    facteurTemporel: 8,
   ),
   Score(
     id: 's9',
-    points: 9,
+    points: 13,
+    facteurTemporel: 9,
   ),
   Score(
     id: 's10',
-    points: 10,
+    points: 2,
+    facteurTemporel: 10,
   ),
 ];
