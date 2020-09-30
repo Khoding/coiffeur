@@ -1,53 +1,53 @@
-import 'models/variante.dart';
+import 'models/Atout.dart';
 import 'models/score.dart';
 
-const DUMMY_VARIANTES = const [
-  Variante(
+const DUMMY_ATOUTS = const [
+  Atout(
     id: 'v1',
     title: 'Cœur',
     facteur: 1,
   ),
-  Variante(
+  Atout(
     id: 'v2',
     title: 'Trèfle',
     facteur: 2,
   ),
-  Variante(
+  Atout(
     id: 'v3',
     title: 'Carreau',
     facteur: 3,
   ),
-  Variante(
+  Atout(
     id: 'v4',
     title: 'Pique',
     facteur: 4,
   ),
-  Variante(
+  Atout(
     id: 'v5',
     title: 'Misère',
     facteur: 5,
   ),
-  Variante(
+  Atout(
     id: 'v6',
     title: '6 X',
     facteur: 6,
   ),
-  Variante(
+  Atout(
     id: 'v7',
     title: 'Par le Bas',
     facteur: 7,
   ),
-  Variante(
+  Atout(
     id: 'v8',
     title: 'Par le Haut',
     facteur: 8,
   ),
-  Variante(
+  Atout(
     id: 'v9',
     title: 'Slalom',
     facteur: 9,
   ),
-  Variante(
+  Atout(
     id: 'v10',
     title: '10 X',
     facteur: 10,

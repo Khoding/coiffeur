@@ -1,14 +1,15 @@
 import 'package:coiffeur/screens/variantes_screen.dart';
 import 'package:flutter/material.dart';
 
-class VarianteItem extends StatelessWidget {
+class AtoutItem extends StatelessWidget {
   final String id;
   final String title;
   final int facteur;
 
-  VarianteItem(this.id, this.title, this.facteur);
+  AtoutItem(this.id, this.title, this.facteur);
 
-  void selectVariante(BuildContext context) {
+  /// Les variables des Atouts
+  void selectAtout(BuildContext context) {
     Navigator.of(context).pushNamed(
       VarianteScreen.routeName,
       arguments: {
@@ -19,6 +20,7 @@ class VarianteItem extends StatelessWidget {
     );
   }
 
+  /// Gère le design d'affichage des Atouts
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

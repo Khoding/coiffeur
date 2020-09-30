@@ -14,6 +14,7 @@ class NewScore extends StatefulWidget {
   }
 }
 
+/// Pas utilisé pour le moment, mais servirat à ajouter des scores
 class _NewScoreState extends State<NewScore> {
   _NewScoreState() {
     print('Constructor NewTransaction State');

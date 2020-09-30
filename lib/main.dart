@@ -3,7 +3,7 @@ import 'package:coiffeur/models/score.dart';
 import 'package:coiffeur/widgets/main_drawer.dart';
 import 'package:coiffeur/widgets/new_score.dart';
 import 'package:coiffeur/widgets/score_item.dart';
-import 'package:coiffeur/widgets/variante_item.dart';
+import 'package:coiffeur/widgets/Atout_item.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+/// Build Container
 Widget buildContainer({Widget child}) {
   return Container(
     child: child,
@@ -65,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
+  /// Ajouter un nouveau score
   void _addNewScore(String newId, int newPoints, int newFacteurTemporel) {
     final newScore = Score(
       id: newId,
@@ -76,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  /// Ajouter un nouveau Score
   void _startAddNewScore(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -85,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  /// Fini mais peut être amélioré
   List<Widget> _buildPortraitContent(MediaQueryData mediaQuery, AppBar appBar,
       Widget textListWidget, Widget dataWidget) {
     return [
@@ -151,6 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
+  /// Pas fini
   List<Widget> _buildLandscapeContent(MediaQueryData mediaQuery, AppBar appBar,
       Widget textListWidget, Widget dataWidget) {
     return [
@@ -167,6 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text('Coiffeur'),
     );
 
+    /// Il s'occupe d'afficher les Atouts
     final textListWidget = Container(
       height: (MediaQuery.of(context).size.height -
               (appBar.preferredSize.height * 3) -
@@ -176,9 +182,9 @@ class _MyHomePageState extends State<MyHomePage> {
       child: buildContainer(
         child: ListView(
           physics: const NeverScrollableScrollPhysics(),
-          children: DUMMY_VARIANTES
+          children: DUMMY_ATOUTS
               .map(
-                (catData) => VarianteItem(
+                (catData) => AtoutItem(
                   catData.id,
                   catData.title,
                   catData.facteur,
@@ -189,6 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
+    /// Il s'occupe d'afficher les Scores
     final dataWidget = Container(
       height: (MediaQuery.of(context).size.height -
               (appBar.preferredSize.height * 3) -
@@ -208,6 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
+    /// Il crée tout en se basant sur la position du téléphone (Landscape pas fonctionnel)
     return Scaffold(
       appBar: appBar,
       drawer: MainDrawer(),

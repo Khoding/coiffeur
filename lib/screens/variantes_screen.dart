@@ -1,5 +1,5 @@
 import 'package:coiffeur/dummy_data.dart';
-import 'package:coiffeur/widgets/variante_item.dart';
+import 'package:coiffeur/widgets/atout_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,9 +10,9 @@ class VarianteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView(
       padding: const EdgeInsets.all(25),
-      children: DUMMY_VARIANTES
+      children: DUMMY_ATOUTS
           .map(
-            (catData) => VarianteItem(
+            (catData) => AtoutItem(
               catData.id,
               catData.title,
               catData.facteur,

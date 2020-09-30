@@ -2,6 +2,7 @@ import 'package:coiffeur/screens/variantes_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+/// Random pour afficher des scores différents
 rnd() {
   var rng = new Random();
   int rnd = rng.nextInt(10) + 1;
@@ -33,6 +34,7 @@ class ScoreItem extends StatelessWidget {
     );
   }
 
+  /// Gère le style d'affichage des scores
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
