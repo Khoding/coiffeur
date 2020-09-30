@@ -1,6 +1,13 @@
 import 'package:coiffeur/dummy_data.dart';
 import 'package:coiffeur/screens/variantes_screen.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+
+rnd() {
+  var rng = new Random();
+  int rnd = rng.nextInt(10) + 1;
+  return rnd;
+}
 
 class ScoreItem extends StatelessWidget {
   final String id;
@@ -31,9 +38,7 @@ class ScoreItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(15),
-      child: Text(
-        scores.toString(),
-      ),
+      child: Text('${scores * rnd()}'),
     );
   }
 }

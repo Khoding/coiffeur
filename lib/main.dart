@@ -132,7 +132,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: appBar.preferredSize.height,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    Text(
+                      'Score',
+                    ),
+                    Text(
+                      'Score',
+                    ),
                     Text(
                       'Score',
                     ),
