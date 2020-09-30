@@ -1,4 +1,3 @@
-import 'package:coiffeur/dummy_data.dart';
 import 'package:coiffeur/screens/variantes_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';

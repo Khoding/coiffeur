@@ -3,9 +3,7 @@ import 'package:coiffeur/models/score.dart';
 import 'package:coiffeur/widgets/main_drawer.dart';
 import 'package:coiffeur/widgets/new_score.dart';
 import 'package:coiffeur/widgets/score_item.dart';
-import 'package:coiffeur/widgets/score_list.dart';
 import 'package:coiffeur/widgets/variante_item.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'score_item.dart';
-import '../models/score.dart';
+import 'package:coiffeur/models/score.dart';
 
 class ScoreList extends StatelessWidget {
   final List<Score> scores;

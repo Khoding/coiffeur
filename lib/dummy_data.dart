@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'models/variante.dart';
 import 'models/score.dart';
 
