@@ -8,7 +8,7 @@ class AtoutItem extends StatelessWidget {
 
   AtoutItem(this.id, this.title, this.facteur);
 
-  /// Les variables des Atouts
+  /// Les variables des Atouts (Variante = atout)
   void selectAtout(BuildContext context) {
     Navigator.of(context).pushNamed(
       VarianteScreen.routeName,
